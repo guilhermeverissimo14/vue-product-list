@@ -4,19 +4,25 @@
     <input v-model="filter" type="text" placeholder="Filtrar por nome" class="mb-4 p-2 border" />
 
     <!-- Lista de produtos -->
-    <div v-if="filteredProducts.length" class="grid grid-cols-2 md:grid-cols-3 md:gap-7 lg:grid-cols-4 gap-2 mx-3 max-w-7xl">
-      <div v-for="product in paginatedProducts" :key="product.id" class="border p-4 mb-4 shadow-lg hover:scale-110 duration-200 ">
-        <img :src="product.src" alt="product.name" class="object-cover rounded-md" />
-        <h2 class="text-xl font-bold">{{ product.name }}</h2>
-        <p>{{ product.sale_price }}</p>
-        <div>
-          <span v-for="variant in product.variants" :key="variant.id">
-            {{ variant.value }} ({{ variant.stock }})
-          </span>
+    <div v-if="filteredProducts.length">
+      <div class="grid grid-cols-2 md:grid-cols-3 md:gap-7 lg:grid-cols-4 gap-4 mx-3 max-w-7xl">
+        <div v-for="product in paginatedProducts" :key="product.id"
+          class="rounded-2xl border p-4 mb-4 shadow-lg hover:scale-110 duration-200 ">
+          <img :src="product.src" alt="product.name" class="object-cover rounded-md hover:text" />
+          <div class="flex items-center justify-evenly w-full my-3">
+            <span class="text-sm bg-gray-200 font-black  p-1  border-black" v-for="variant in product.variants"
+              :key="variant.id">
+              {{ variant.value }} ({{ variant.stock }})
+            </span>
+          </div>
+          <h2 class="text-md my-4">{{ product.name }}</h2>
+          <p class="text-sm line-through">R$ {{ product.sale_price + 20.11 }}</p>
+          <p class="text-green-600 text-lg "> R$ {{ product.sale_price.toFixed(2) }}</p>
+          <p class="text-sm"> 2x de R$ {{ product.sale_price / 2 }} no cartão s/ juros</p>
         </div>
+        <div v-if="loading" class="text-center">Carregando mais produtos...</div>
       </div>
-      <div v-if="loading && products.length !== 0" class="text-center">Carregando mais produtos...</div>
-      <button  @click="nextPage" class="mt-4 p-2 bg-blue-500 text-white rounded">Ver mais</button>
+      <button @click="nextPage" class="mt-4 p-2 bg-blue-500 text-white rounded">Ver mais</button>
     </div>
     <div v-else>
       Carregando produtos...
