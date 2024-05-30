@@ -27,7 +27,7 @@
         </div>
         <div v-if="loading" class="text-center">Carregando mais produtos...</div>
       </div>
-      <button @click="nextPage" class="mt-4 p-2 bg-blue-500 text-white rounded">Ver mais</button>
+      <button v-if="this.filteredProducts.length > 19" @click="nextPage" class="my-4 mx-3 p-2 bg-gray-500 hover:bg-gray-700 text-white text-sm rounded">Ver mais</button>
     </div>
     <div v-else >
       Carregando produtos...
@@ -57,8 +57,9 @@ export default {
         product.name.toLowerCase().includes(this.filter.toLowerCase())
       );
     },
-
+    
     paginatedProducts() {
+      console.log("paginatedProducts", this.filteredProducts);
       return this.filteredProducts.slice(0, this.page * this.limit);
     },
 
