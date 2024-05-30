@@ -1,7 +1,22 @@
 <template>
   <div class="w-full flex flex-col items-center justify-center">
+    <!-- <header class="w-full h-[420px] bg-zinc-800 flex items-center justify-evenly">
+      <h1 class="text-white">Seja bem vindo ao maior e-commerce </h1>
+        <img 
+         class="w-[300px] h-[300px] rounded-3xl"
+         src="./assets/logo.png" 
+         alt="Logo"
+         >
+    </header> -->
     <!-- Campo de filtro -->
-    <input v-model="filter" type="text" placeholder="Filtrar por nome" class="mb-4 p-2 border" />
+    <div class="my-5 w-full ml-40" >
+      <input 
+      class="border border-gray-300 rounded-lg p-2 w-[60%] md:w-[30%] focus:outline-none focus:ring-2 focus:ring-gray-300"
+      v-model="filter"
+      type="text"
+     placeholder="Filtrar por nome"
+     />
+    </div>
  
     <!-- Lista de produtos -->
     <div v-if="filteredProducts.length">
@@ -34,6 +49,7 @@
 import axios from 'axios';
 
 export default {
+
   data() {
     return {
       products: [],
