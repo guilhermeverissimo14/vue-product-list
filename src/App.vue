@@ -1,14 +1,5 @@
 <template>
   <div class="w-full flex flex-col items-center justify-center">
-    <!-- <header class="w-full h-[420px] bg-zinc-800 flex items-center justify-evenly">
-      <h1 class="text-white">Seja bem vindo ao maior e-commerce </h1>
-        <img 
-         class="w-[300px] h-[300px] rounded-3xl"
-         src="./assets/logo.png" 
-         alt="Logo"
-         >
-    </header> -->
-    <!-- Campo de filtro -->
     <div class="my-5 w-full ml-40" >
       <input 
       class="border border-gray-300 rounded-lg p-2 w-[60%] md:w-[30%] focus:outline-none focus:ring-2 focus:ring-gray-300"
@@ -18,7 +9,6 @@
      />
     </div>
  
-    <!-- Lista de produtos -->
     <div v-if="filteredProducts.length">
       <div class="grid grid-cols-2 md:grid-cols-3 md:gap-7 lg:grid-cols-4 gap-4 mx-3 max-w-7xl">
         <div v-for="product in paginatedProducts" :key="product.id"
@@ -39,7 +29,7 @@
       </div>
       <button @click="nextPage" class="mt-4 p-2 bg-blue-500 text-white rounded">Ver mais</button>
     </div>
-    <div v-else>
+    <div v-else >
       Carregando produtos...
     </div>
   </div>
@@ -74,7 +64,6 @@ export default {
 
   },
   methods: {
-    // Método para buscar produtos da API
     fetchProducts() {
       if (this.loading) return;
       this.loading = true;
@@ -105,5 +94,4 @@ export default {
 </script>
 
 <style scoped>
-/* Adicione quaisquer estilos específicos do componente aqui */
 </style>
